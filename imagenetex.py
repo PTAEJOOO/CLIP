@@ -11,7 +11,13 @@ model, preprocess = clip.load('ViT-B/32', device)
 cifar100 = CIFAR100(root=os.path.expanduser("~/.cache"), download=True, train=False)
 
 # Prepare the inputs
-image, class_id = cifar100[3637]
+image, class_id = cifar100[3636]
+
+##
+image.show()
+print(cifar100.classes[class_id])
+##
+
 image_input = preprocess(image).unsqueeze(0).to(device)
 text_inputs = torch.cat([clip.tokenize(f"a photo of a {c}") for c in cifar100.classes]).to(device)
 
